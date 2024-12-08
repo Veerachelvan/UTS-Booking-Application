@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotate Background Image</title>
+    <style>
+        .container {
+            position: relative; /* Make the container a positioning context */
+            width: 300px;
+            height: 200px;
+            border: 2px solid #ccc;
+            overflow: hidden; /* Ensure rotated parts do not overflow */
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://via.placeholder.com/600x400');
+            background-size: cover; /* Adjust image size */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat;
+            transform: rotate(45deg); /* Rotate the image by 45 degrees */
+            transform-origin: center; /* Rotate around the center */
+        }
+    </style>
+</head>
+<body>
+    <div class="container"></div>
+</body>
+</html>

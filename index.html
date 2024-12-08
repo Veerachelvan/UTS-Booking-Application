@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fef5f0;
+        }
+
+        .header {
+            background-color: #ff7043;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #ff7043;
+            color: white;
+        }
+
+        .header {
+            display: flex;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .image {
+            position: fixed;
+            align-items: center;
+            height: 50px;
+            width: 50px;
+            z-index: 1;
+        }
+
+        .button-row {
+            text-align: right;
+            margin-top: 10px;
+        }
+
+        .button {
+            background-color: #ff7043;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .button:hover {
+            background-color: #e86537;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Booking History</div>
+
+    <div class="container">
+        <!-- Ticket 1 -->
+        <table>
+            <thead>
+                <tr>
+                    <div class="header">
+                        <div>Journey (M-TICKET)</div>
+                        <div >FARE: ₹5.00</div>
+                    </div>
+                </tr>
+            </thead>
+            
+                <tr>
+                    <td colspan="2"><strong>From:</strong> Chennai Central Subu</td>
+                    <td><strong>To:</strong> Perambur</td>
+                </tr>
+                <tr>
+                    <td colspan="3"><strong>Via:</strong> -</td>
+                </tr>
+                <tr>
+                    <td><strong>Adults:</strong> 1  <strong>Children:</strong> 0</td>
+                    <td>SECOND(II)</td>
+                    <td>ORDINARY(0)</td>
+                </tr>
+                <tr>
+                    <td colspan="3"><strong>Booking Date:</strong> Dec 01, 2024 13:32:08</td>
+                </tr>
+                <img src="img.png" class="image">
+                <tr class="button-row">
+                    <td >
+                        <button class="button">BOOK AGAIN</button>
+                    </td>
+                    <td>
+                        <button class="button">NEXT TRAINS</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Ticket 2 -->
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">Journey (M-TICKET)</th>
+                    <th class="fare">FARE: ₹5.00</th>
+                </tr>
+            </thead>
+            
+                <tr>
+                    <td><strong>From:</strong> Chennai Park</td>
+                    <td><strong>To:</strong> Mandaveli</td>
+                    <td rowspan="3" class="paperless">PAPERLESS</td>
+                </tr>
+                <tr>
+                    <td><strong>Via:</strong> MSF</td>
+                    <td><strong>Adults:</strong> 1 | <strong>Children:</strong> 0</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong>Booking Date:</strong> Nov 25, 2024 17:04:19</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="button-row">
+                        <button class="button">BOOK AGAIN</button>
+                    </td>
+                    <td>
+                        <button class="button">NEXT TRAINS</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

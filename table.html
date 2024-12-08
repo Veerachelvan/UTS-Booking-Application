@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTS Booking</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Bahnschrift;
+            margin: 0;
+            padding: 13px;
+            background-color: #fafafa;
+        }
+
+        .list {
+            display: grid;
+            gap: 25px;
+        }
+
+        .title {
+            display: flex;
+            grid-template-columns: 1fr 1fr;
+            color: #ffff;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: 350;
+            padding-left: 20px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            background: linear-gradient(to right, #fe7469, #f88848);;
+        }
+
+        .image {
+            filter: invert(1);
+        }
+
+        .container {
+            display: grid;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 29%;
+            left: 40%;
+            width: 85px;
+            height: 85px;
+            background-image: url("img.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 85px;
+            border-radius: 100%;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+            transform: rotate(-10deg);
+            z-index: -1;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            overflow: hidden;
+        }
+
+        .icon {
+            font-size: 20px;
+            color: black;
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+
+        #three-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            overflow: hidden;
+        }
+
+        .cell {
+            border: 1px solid #f2f2f2;
+            font-weight: 390;
+            font-size: 11.5px;
+            padding-top: 4px;
+            padding-bottom: 2px;
+        }
+
+        #header {
+            background-color: #95f1fe;
+            font-weight: bold;
+            font-size: 14px;
+            padding-top: 8px;
+            padding-bottom: 6px;
+            padding-left: 5px;
+            padding-right: 6px;
+            border-left: 1px solid transparent;
+            border-top: 0;
+            border-bottom: 0;
+            border-right: 1px solid #f2f2f2;
+        }
+
+        #round {
+            font-size: large;
+            margin-left: 0px;
+            margin-right: 5px;
+            padding: 3px 6px;
+            font-weight: bolder;
+            background-color: #f88848;
+            border-radius: 100%;
+            color: white;
+        }
+
+        #root {
+
+            font-size: 13px;
+            padding: 10px 10px;
+        }
+
+        #one-row {
+            padding-top: 10px;
+            padding-bottom: 7px;
+            border-left: 0;
+            border-right: 0;
+        }
+
+        #footer {
+            color: #f88848;
+            font-weight: bold;
+            font-size: 12.5px;
+            border-top: 3px solid #f2f2f2;
+            border-bottom: 0;
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="list">
+
+        <div class="title">
+            <img src="ticket.png" alt="Icon" height="32px" width="32px" class="image" style="transform: rotate(-12deg);"><label style="padding-left: 15px; padding-top: 6px;">BOOKING HISTORY</label>
+         </div>
+
+        <!-- table 1 -->
+        <div class="container">
+
+            <div class="row">
+                <div class="cell" id="header">JOURNEY ( M-TICKET )</div>
+                <div class="cell" id="header" style="
+                        text-align: right; 
+                        border-left: 1px solid #f2f2f2; 
+                        border-right: 0;">
+                    FARE: &#8377;5.00 </div>
+            </div>
+
+            <div class="row">
+                <div class="cell" id="root" style="border-left: 0;"><label id="round">S</label>CHENNEI CENTRAL SUBU
+                </div>
+                <div class="cell" id="root" style="border-right: 0;"><label id="round">D</label>PERAMBUR</div>
+            </div>
+
+            <div class="cell" id="one-row">Via:</div>
+
+            <div class="row" id="three-row">
+                <div class="cell" style="border-left: 0;">ADULT: <label style="color: #f88848;">2</label> CHILD: <label
+                        style="color: #f88848;">0</label></div>
+                <div class="cell" style="text-align: center;">SECOND (II)</div>
+                <div class="cell" style="text-align: center; border-right: 0;">ORDINARY (0)</div>
+            </div>
+
+            <div class="cell" id="one-row">BOOKING DATE: <label style="color: #f88848;">DEC 01, 2024 13:32:08</label>
+            </div>
+
+            <div class="row">
+                <div class="cell" id="footer" style="border-left: 0;"><i class="fas fa-arrow-right icon"></i>BOOK AGAIN
+                </div>
+                <div class="cell" id="footer" style="text-align: right; border-right: 0; padding-right: 5px;">
+                    <i class="fas fa-search icon"></i>NEXT TRAINS</div>
+            </div>
+
+        </div>
+
+        <!-- table 2 -->
+        <div class="container">
+
+            <div class="row">
+                <div class="cell" id="header">JOURNEY ( M-TICKET )</div>
+                <div class="cell" id="header" style="
+                    text-align: right; 
+                    border-left: 1px solid #f2f2f2; 
+                    border-right: 0;">
+                    FARE 5.00
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="cell" id="root" style="border-left: 0;"><label id="round">S</label>CHENNEI CENTRAL SUBU
+                </div>
+                <div class="cell" id="root" style="border-right: 0;"><label id="round">D</label>PERAMBUR</div>
+            </div>
+
+            <div class="cell" id="one-row">Via:</div>
+
+            <div class="row" id="three-row">
+                <div class="cell" style="border-left: 0;">ADULT: <label style="color: #f88848;">2</label> CHILD: <label
+                        style="color: #f88848;">0</label></div>
+                <div class="cell" style="text-align: center;">SECOND (II)</div>
+                <div class="cell" style="text-align: center; border-right: 0;">ORDINARY (0)</div>
+            </div>
+
+            <div class="cell" id="one-row">BOOKING DATE: <label style="color: #f88848;">DEC 01, 2024 13:32:08</label>
+            </div>
+
+            <div class="row">
+                <div class="cell" id="footer" style="border-left: 0;"><i class="fas fa-arrow-right icon"></i>BOOK AGAIN
+                </div>
+                <div class="cell" id="footer" style="text-align: right; border-right: 0; padding-right: 5px;"><i
+                        class="fas fa-search icon"></i>NEXT TRAINS</div>
+            </div>
+
+        </div>
+
+        <!-- table 3 -->
+        <div class="container">
+
+            <div class="row">
+                <div class="cell" id="header">JOURNEY ( M-TICKET )</div>
+                <div class="cell" id="header" style="
+                    text-align: right; 
+                    border-left: 1px solid #f2f2f2; 
+                    border-right: 0;">
+                    FARE 5.00
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="cell" id="root" style="border-left: 0;"><label id="round">S</label>CHENNEI CENTRAL SUBU
+                </div>
+                <div class="cell" id="root" style="border-right: 0;"><label id="round">D</label>PERAMBUR</div>
+            </div>
+
+            <div class="cell" id="one-row">Via:</div>
+
+            <div class="row" id="three-row">
+                <div class="cell" style="border-left: 0;">ADULT: <label style="color: #f88848;">2</label> CHILD: <label
+                        style="color: #f88848;">0</label></div>
+                <div class="cell" style="text-align: center;">SECOND (II)</div>
+                <div class="cell" style="text-align: center; border-right: 0;">ORDINARY (0)</div>
+            </div>
+
+            <div class="cell" id="one-row">BOOKING DATE: <label style="color: #f88848;">DEC 01, 2024 13:32:08</label>
+            </div>
+
+            <div class="row">
+                <div class="cell" id="footer" style="border-left: 0;"><i class="fas fa-arrow-right icon"></i>BOOK AGAIN
+                </div>
+                <div class="cell" id="footer" style="text-align: right; border-right: 0; padding-right: 5px;"><i
+                        class="fas fa-search icon"></i>NEXT TRAINS</div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
