@@ -1,158 +1,400 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking History</title>
+    <title>UTS Booking</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: Bahnschrift;
             margin: 0;
-            padding: 0;
-            background-color: #fef5f0;
+            padding: 13px;
+            background-color: #fafafa;
         }
 
-        .header {
-            background-color: #ff7043;
-            color: white;
-            padding: 15px;
+        .selector {
+            display: none;
+            position: absolute;
+            background-color: #ffff;
+            align-items: center;
+            align-content: center;
             text-align: center;
-            font-size: 18px;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .container {
-            padding: 20px;
-        }
-
-        table {
+            left: 0;
+            height: 100vh;
             width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            padding-bottom: 100px;
         }
 
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border: 1px solid #ddd;
-            font-size: 14px;
+        .selector input {
+            background-color: #95f1fe;
+            margin: 0 25%;
+            border-radius: 8px;
+            padding: 5px;
+            border: 2px solid #2cc9dd;
         }
 
-        th {
-            background-color: #ff7043;
-            color: white;
+        .selector button {
+            background-color: #f88848;
+            margin: 0 25%;
+            padding: 5px;
+            border-radius: 8px 8px;
+            border: 2px solid #fafafa;
         }
 
-        .header {
+        .list {
+            display: grid;
+            gap: 25px;
+        }
+
+        .title {
             display: flex;
-            font-weight: bold;
-            color: #ffffff;
+            grid-template-columns: 1fr 1fr;
+            color: #ffff;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: 350;
+            padding-left: 20px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            background: linear-gradient(to right, #fe7469, #f88848);
+            ;
         }
 
         .image {
-            position: fixed;
-            align-items: center;
-            height: 50px;
-            width: 50px;
-            z-index: 1;
+            filter: invert(1);
         }
 
-        .button-row {
-            text-align: right;
-            margin-top: 10px;
+        .container {
+            display: grid;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+            position: relative;
         }
 
-        .button {
-            background-color: #ff7043;
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 29%;
+            left: 40%;
+            width: 85px;
+            height: 85px;
+            background-image: url("img.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 85px;
+            border-radius: 100%;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+            transform: rotate(-10deg);
+            z-index: -1;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            overflow: hidden;
+        }
+
+        .icon {
+            font-size: 20px;
+            color: black;
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+
+        #three-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            overflow: hidden;
+        }
+
+        .cell {
+            border: 1px solid #f2f2f2;
+            font-weight: 390;
+            font-size: 11.5px;
+            padding-top: 4px;
+            padding-bottom: 2px;
+        }
+
+        #header {
+            background-color: #95f1fe;
+            font-weight: bold;
+            font-size: 14px;
+            padding-top: 8px;
+            padding-bottom: 6px;
+            padding-left: 5px;
+            padding-right: 6px;
+            border-left: 1px solid transparent;
+            border-top: 0;
+            border-bottom: 0;
+            border-right: 1px solid #f2f2f2;
+        }
+
+        #round {
+            font-size: large;
+            margin-left: 0px;
+            margin-right: 5px;
+            padding: 3px 6px;
+            font-weight: bolder;
+            background-color: #f88848;
+            border-radius: 100%;
             color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 8px 15px;
-            cursor: pointer;
-            font-size: 12px;
         }
 
-        .button:hover {
-            background-color: #e86537;
+        #root {
+
+            font-size: 13px;
+            padding: 10px 10px;
+        }
+
+        #one-row {
+            padding-top: 10px;
+            padding-bottom: 7px;
+            border-left: 0;
+            border-right: 0;
+        }
+
+        #footer {
+            color: #f88848;
+            font-weight: bold;
+            font-size: 12.5px;
+            border-top: 3px solid #f2f2f2;
+            border-bottom: 0;
+            padding-top: 8px;
+            padding-bottom: 8px;
         }
     </style>
 </head>
+
 <body>
-    <div class="header">Booking History</div>
 
-    <div class="container">
-        <!-- Ticket 1 -->
-        <table>
-            <thead>
-                <tr>
-                    <div class="header">
-                        <div>Journey (M-TICKET)</div>
-                        <div >FARE: ₹5.00</div>
-                    </div>
-                </tr>
-            </thead>
-            
-                <tr>
-                    <td colspan="2"><strong>From:</strong> Chennai Central Subu</td>
-                    <td><strong>To:</strong> Perambur</td>
-                </tr>
-                <tr>
-                    <td colspan="3"><strong>Via:</strong> -</td>
-                </tr>
-                <tr>
-                    <td><strong>Adults:</strong> 1  <strong>Children:</strong> 0</td>
-                    <td>SECOND(II)</td>
-                    <td>ORDINARY(0)</td>
-                </tr>
-                <tr>
-                    <td colspan="3"><strong>Booking Date:</strong> Dec 01, 2024 13:32:08</td>
-                </tr>
-                <img src="img.png" class="image">
-                <tr class="button-row">
-                    <td >
-                        <button class="button">BOOK AGAIN</button>
-                    </td>
-                    <td>
-                        <button class="button">NEXT TRAINS</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <!-- Ticket 2 -->
-        <table>
-            <thead>
-                <tr>
-                    <th colspan="2">Journey (M-TICKET)</th>
-                    <th class="fare">FARE: ₹5.00</th>
-                </tr>
-            </thead>
-            
-                <tr>
-                    <td><strong>From:</strong> Chennai Park</td>
-                    <td><strong>To:</strong> Mandaveli</td>
-                    <td rowspan="3" class="paperless">PAPERLESS</td>
-                </tr>
-                <tr>
-                    <td><strong>Via:</strong> MSF</td>
-                    <td><strong>Adults:</strong> 1 | <strong>Children:</strong> 0</td>
-                </tr>
-                <tr>
-                    <td colspan="2"><strong>Booking Date:</strong> Nov 25, 2024 17:04:19</td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="button-row">
-                        <button class="button">BOOK AGAIN</button>
-                    </td>
-                    <td>
-                        <button class="button">NEXT TRAINS</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="selector">
+        <label>Source</label>
+        <input type="text" id="source" list="stations">
+        <datalist id="stations">
+            <option value="CHENNAI BEACH"></option>
+            <option value="CHENNAI FORT"></option>
+            <option value="CHENNAI PARK TOWN"></option>
+            <option value="MANDAVELI"></option>
+            <option value="KOTTURPURAM"></option>
+            <option value="TARAMANI"></option>
+            <option value="VELACHERY"></option>
+        </datalist>
+        <label>Destination</label>
+        <input type="text" id="destination" list="stations">
+        <label>Passenger Count</label>
+        <input type="text" id="count">
+        <button onclick="book()">BOOK</button>
+        <button onclick="cancel()">CANCEL</button>
     </div>
+
+    <div class="list">
+
+        <div class="title">
+            <img src="ticket.png" alt="Icon" height="32px" width="32px" class="image" style="transform: rotate(-12deg);"
+                ondblclick="bookagain()"> <label style="padding-left: 15px; padding-top: 6px;">BOOKING HISTORY</label>
+        </div>
+
+        <!-- table 1 -->
+        <div class="container">
+
+            <div class="row">
+                <div class="cell" id="header">JOURNEY ( M-TICKET )</div>
+                <div class="cell" id="header" style="
+                        text-align: right; 
+                        border-left: 1px solid #f2f2f2; 
+                        border-right: 0;">
+                    FARE: &#8377;55.00 </div>
+            </div>
+
+            <div class="row">
+                <div class="cell" id="root" style="border-left: 0;"><label id="round">S</label>CHENNEI CENTRAL SUBU
+                </div>
+                <div class="cell" id="root" style="border-right: 0;"><label id="round">D</label>PERAMBUR</div>
+            </div>
+
+            <div class="cell" id="one-row">Via:</div>
+
+            <div class="row" id="three-row">
+                <div class="cell" style="border-left: 0;">ADULT: <label style="color: #f88848;">2</label> CHILD: <label
+                        style="color: #f88848;">0</label></div>
+                <div class="cell" style="text-align: center;">FIRST (FC)</div>
+                <div class="cell" style="text-align: center; border-right: 0;">ORDINARY (0)</div>
+            </div>
+
+            <div class="cell" id="one-row">BOOKING DATE: <label style="color: #f88848;">DEC 01, 2024 13:32:08</label>
+            </div>
+
+            <div class="row">
+                <div class="cell" id="footer" style="border-left: 0;" onclick="book()"><i
+                        class="fas fa-arrow-right icon"></i>BOOK AGAIN
+                </div>
+                <div class="cell" id="footer" style="text-align: right; border-right: 0; padding-right: 5px;">
+                    <i class="fas fa-search icon"></i>NEXT TRAINS
+                </div>
+            </div>
+
+        </div>
+
+        <!-- table 2 -->
+        <div class="container">
+
+            <div class="row">
+                <div class="cell" id="header">JOURNEY ( M-TICKET )</div>
+                <div class="cell" id="header" style="
+                        text-align: right; 
+                        border-left: 1px solid #f2f2f2; 
+                        border-right: 0;">
+                    FARE: &#8377;55.00 </div>
+            </div>
+
+            <div class="row">
+                <div class="cell" id="root" style="border-left: 0;"><label id="round">S</label>CHENNEI CENTRAL SUBU
+                </div>
+                <div class="cell" id="root" style="border-right: 0;"><label id="round">D</label>PERAMBUR</div>
+            </div>
+
+            <div class="cell" id="one-row">Via:</div>
+
+            <div class="row" id="three-row">
+                <div class="cell" style="border-left: 0;">ADULT: <label style="color: #f88848;">2</label> CHILD: <label
+                        style="color: #f88848;">0</label></div>
+                <div class="cell" style="text-align: center;">FIRST (FC)</div>
+                <div class="cell" style="text-align: center; border-right: 0;">ORDINARY (0)</div>
+            </div>
+
+            <div class="cell" id="one-row">BOOKING DATE: <label style="color: #f88848;">DEC 05, 2024 18:42:12</label>
+            </div>
+
+            <div class="row">
+                <div class="cell" id="footer" style="border-left: 0;"><i class="fas fa-arrow-right icon"></i>BOOK AGAIN
+                </div>
+                <div class="cell" id="footer" style="text-align: right; border-right: 0; padding-right: 5px;"><i
+                        class="fas fa-search icon"></i>NEXT TRAINS</div>
+            </div>
+
+        </div>
+
+        <!-- table 3 -->
+        <div class="container">
+
+            <div class="row">
+                <div class="cell" id="header">JOURNEY ( M-TICKET )</div>
+                <div class="cell" id="header" style="
+                        text-align: right; 
+                        border-left: 1px solid #f2f2f2; 
+                        border-right: 0;">
+                    FARE: &#8377;55.00 </div>
+            </div>
+
+            <div class="row">
+                <div class="cell" id="root" style="border-left: 0;"><label id="round">S</label>CHENNEI CENTRAL SUBU
+                </div>
+                <div class="cell" id="root" style="border-right: 0;"><label id="round">D</label>PERAMBUR</div>
+            </div>
+
+            <div class="cell" id="one-row">Via:</div>
+
+            <div class="row" id="three-row">
+                <div class="cell" style="border-left: 0;">ADULT: <label style="color: #f88848;">2</label> CHILD: <label
+                        style="color: #f88848;">0</label></div>
+                <div class="cell" style="text-align: center;">FIRST (FC)</div>
+                <div class="cell" style="text-align: center; border-right: 0;">ORDINARY (0)</div>
+            </div>
+
+            <div class="cell" id="one-row">BOOKING DATE: <label style="color: #f88848;">DEC 08, 2024 10:08:48</label>
+            </div>
+
+            <div class="row">
+                <div class="cell" id="footer" style="border-left: 0;"><i class="fas fa-arrow-right icon"></i>BOOK AGAIN
+                </div>
+                <div class="cell" id="footer" style="text-align: right; border-right: 0; padding-right: 5px;"><i
+                        class="fas fa-search icon"></i>NEXT TRAINS</div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        var ticket = document.querySelector(".list")
+        var source = document.querySelector("#source")
+        var destination = document.querySelector("#destination")
+        var count = document.querySelector("#count")
+
+        function book() {
+
+            var cancelbook = document.querySelector(".selector")
+            cancelbook.style.display = "none"
+
+            const now = new Date();
+
+            // Get month names
+            const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+
+            // Extract parts of the date
+            const month = months[now.getMonth()];
+            const day = String(now.getDate()).padStart(2, '0'); // Ensures 2-digit day
+            const year = now.getFullYear();
+            const hours = String(now.getHours()).padStart(2, '0'); // Ensures 2-digit hours
+            const minutes = String(now.getMinutes()).padStart(2, '0'); // Ensures 2-digit minutes
+            const seconds = String(now.getSeconds()).padStart(2, '0'); 
+
+            var newTicket = document.createElement("div")
+            newTicket.setAttribute("class", "container")
+            newTicket.innerHTML = `<div class="row">
+                <div class="cell" id="header">JOURNEY ( M-TICKET )</div>
+                <div class="cell" id="header" style="
+                        text-align: right; 
+                        border-left: 1px solid #f2f2f2; 
+                        border-right: 0;">
+                    FARE: &#8377;55.00 </div>
+            </div>
+
+            <div class="row">
+                <div class="cell" id="root" style="border-left: 0;"><label id="round">S</label>${source.value}
+                </div>
+                <div class="cell" id="root" style="border-right: 0;"><label id="round">D</label>${destination.value}</div>
+            </div>
+
+            <div class="cell" id="one-row">Via:</div>
+
+            <div class="row" id="three-row">
+                <div class="cell" style="border-left: 0;">ADULT: <label style="color: #f88848;">${count.value}</label> CHILD: <label
+                        style="color: #f88848;">0</label></div>
+                <div class="cell" style="text-align: center;">FIRST (FC)</div>
+                <div class="cell" style="text-align: center; border-right: 0;">ORDINARY (0)</div>
+            </div>
+
+            <div class="cell" id="one-row">BOOKING DATE: <label style="color: #f88848;">${month} ${day}, ${year} ${hours}:${minutes}:${seconds}</label>
+            </div>
+
+            <div class="row">
+                <div class="cell" id="footer" style="border-left: 0;"><i class="fas fa-arrow-right icon"></i>BOOK AGAIN
+                </div>
+                <div class="cell" id="footer" style="text-align: right; border-right: 0; padding-right: 5px;"><i
+                        class="fas fa-search icon"></i>NEXT TRAINS</div>
+            </div>`
+
+            const secondContainer = ticket.children[1];
+            ticket.insertBefore(newTicket, secondContainer);
+        }
+
+        function cancel() {
+            var cancelbook = document.querySelector(".selector")
+            cancelbook.style.display = "none"
+        }
+
+        function bookagain() {
+            var cancelbook = document.querySelector(".selector")
+            cancelbook.style.display = "grid"
+        }
+
+
+
+    </script>
 </body>
+
 </html>
