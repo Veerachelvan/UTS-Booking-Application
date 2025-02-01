@@ -325,7 +325,10 @@
         var destination = document.querySelector("#destination")
         var count = document.querySelector("#count")
 
+
         function book() {
+            
+            var fare = count.value * 55;
 
             var cancelbook = document.querySelector(".selector")
             cancelbook.style.display = "none"
@@ -341,7 +344,7 @@
             const year = now.getFullYear();
             const hours = String(now.getHours()).padStart(2, '0'); // Ensures 2-digit hours
             const minutes = String(now.getMinutes()).padStart(2, '0'); // Ensures 2-digit minutes
-            const seconds = String(now.getSeconds()).padStart(2, '0'); 
+            const seconds = String(now.getSeconds()).padStart(2, '0');
 
             var newTicket = document.createElement("div")
             newTicket.setAttribute("class", "container")
@@ -351,7 +354,7 @@
                         text-align: right; 
                         border-left: 1px solid #f2f2f2; 
                         border-right: 0;">
-                    FARE: &#8377;55.00 </div>
+                    FARE: &#8377;${fare} </div>
             </div>
 
             <div class="row">
